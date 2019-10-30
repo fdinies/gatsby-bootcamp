@@ -6,7 +6,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: "This is my first Blog in Gatsby/React <><><><>",
+    title: "This is my first Blog in Gatsby/React",
     author: "Frank Dinies (FD)",
     version: "0.1",
   },
