@@ -10,12 +10,12 @@ export default ({ data }) => {
     <Layout>
       <h1>Blog</h1>
       <ol className={blogStyles.posts}>
-        {data.allMarkdownRemark.edges.map(({ node }, index) => {
+        {data.allContentfulBlogPost.edges.map(({ node }, index) => {
           return (
-            <li key={node.id} className={blogStyles.post}>
-              <Link to={`/blog/${node.fields.slug}`}>
-                <h2>{node.frontmatter.title}</h2>
-                <p>{node.frontmatter.date}</p>
+            <li key={node.slug} className={blogStyles.post}>
+              <Link to={`/blog/${node.slug}`}>
+                <h2>{node.title}</h2>
+                <p>{node.publishedDate}</p>
               </Link>
             </li>
           )
@@ -27,17 +27,13 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { order: ASC, fields: [frontmatter___date] }) {
+    allContentfulBlogPost {
       edges {
         node {
           id
-          frontmatter {
-            title
-            date(formatString: "DD-MM-YYYY")
-          }
-          fields {
-            slug
-          }
+          title
+          slug
+          publishedDate(formatString: "MMMM Do, YYYY")
         }
       }
     }
