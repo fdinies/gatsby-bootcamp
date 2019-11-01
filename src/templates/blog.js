@@ -5,12 +5,23 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Layout from "../components/layout"
 
 export default ({ data }) => {
+  const options = {
+    renderNode: {
+      "embedded-asset-block": node => {
+        const alt = node.data.target.fields.title["en-US"]
+        //const alt = "test"
+        const url = node.data.target.fields.file["en-US"].url
+        return <img alt={alt} src={url} />
+      },
+    },
+  }
+
   const { title, publishedDate, body } = data.contentfulBlogPost
   return (
     <Layout>
       <h1>{title}</h1>
       <p>{publishedDate}</p>
-      {documentToReactComponents(body.json)}
+      {documentToReactComponents(body.json, options)}
     </Layout>
   )
 }
