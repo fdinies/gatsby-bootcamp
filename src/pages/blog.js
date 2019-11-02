@@ -2,12 +2,14 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
+import Head from "../components/head"
 
 import blogStyles from "./blog.module.scss"
 
 export default ({ data }) => {
   return (
     <Layout>
+      <Head title="Blog" />
       <h1>Blog</h1>
       <ol className={blogStyles.posts}>
         {data.allContentfulBlogPost.edges.map(({ node }, index) => {
@@ -33,7 +35,7 @@ export const query = graphql`
           id
           title
           slug
-          publishedDate(formatString: "MMMM Do, YYYY")
+          publishedDate(formatString: "MMMM Do- YYYY")
         }
       }
     }

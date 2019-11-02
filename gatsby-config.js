@@ -6,11 +6,12 @@
 
 module.exports = {
   siteMetadata: {
-    title: "This is my first Blog in Gatsby/React",
+    title: "Gatsby/React Blog",
     author: "Frank Dinies (FD)",
     version: "0.1",
   },
   plugins: [
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-contentful",
       options: {
